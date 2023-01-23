@@ -1,0 +1,83 @@
+.header{
+    height: 15vh;
+    width: 100vw;
+}
+.date-container{
+    padding-left: 5%;
+    padding-top: 2%;
+    font-size: 1vw;
+}
+.center-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40vw;
+    position:absolute;
+    left:30vw;
+}
+.temperature-container{
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 5%;
+    padding-top: 5%;
+}
+
+.header-title{
+    font-size: 2vw;
+}
+.header-sub-title{
+    font-size: 1vw;
+}
+.logo{
+    width:5vw;
+    height:10vh;
+    position: relative;
+    left:5vw;
+}
+
+
+/*  Mobile Device       */
+
+@media (max-width: 480px) {
+    .header{
+        height: 15vh;
+        width: 100vw;
+    }
+    .date-container{
+        padding-left: 5%;
+        padding-top: 2vh;
+        font-size: 12px;
+    }
+    .center-content{
+        margin: auto;
+        display: block;
+        padding-top: 2vh;
+        width: 50vw;
+        position:absolute;
+        text-align: center;
+        left:25vw;
+    }
+    .header-title-wrapper{
+        margin-top: 0;
+        padding-top: 0;
+    }
+    .temperature-container{
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 5%;
+        padding-top: 5%;
+    }
+    
+    .header-title{
+        font-size: 0.9em;
+    }
+    .header-sub-title{
+        font-size: 0.8em;
+    }
+    .logo{
+        width:12vw;
+        height:5vh;
+        position:static;
+    }
+ 
+    }
