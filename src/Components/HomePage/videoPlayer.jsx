@@ -11,30 +11,55 @@ export default function VideoPlayer(props) {
   console.log("images ",images)
 }
   const [videoId, setVideoId] = useState(0);
+  const [mediaId, setMediaId] = useState(0);
   const [contentIsVideo, setContentIsVideo] = useState(false);
+  const [videoIsYt, setVideoIsYt] = useState(true);
 
-
+  let mediaData=[]
   let videoData=[];
   videos.forEach(element => {
-    let originalLink=element.link;
+   
     let videoLink="";
+    if(element.link===null){
+      mediaData.push(element.media);
+    }
+    else{
+      let originalLink=element.link;
     
     for(let i=originalLink.length-1;i>0;i--){
       if(originalLink[i]==='/') break;
       videoLink=originalLink[i]+videoLink;
      
     }
+    videoData.push(videoLink.slice(8))
+  }
     
-    //let embedLink="https://www.youtube.com/embed/"+videoLink+"?autoplay=1&mute=1";
 
-    videoData.push(videoLink.slice(8))});
-    console.log(videoData);
-
+    });
+    console.log(videoData,'Yt video');
+    console.log(mediaData,'video');
+const changeMedia=()=>{
+  console.log('changed');
+  if(mediaId+1===mediaData.length){
+    console.log(mediaId,"at if")
+    console.log("is at video changer")
+    setContentIsVideo(false);
+    setVideoIsYt(true);
+    setMediaId(0);
+    
+    
+  }
+  else{
+    console.log("current video id",mediaId)
+    setVideoId(mediaId+1);
+    
+  }
+}
 const changeVideo=()=>{
 if(videoId+1===videoData.length){
   console.log(videoId,"at if")
   console.log("is at video changer")
-  setContentIsVideo(false);
+  setVideoIsYt(false);
   setVideoId(0);
   
   
@@ -48,10 +73,18 @@ else{
 
 
   
-  return contentIsVideo?(<div className='tile is-child box box-width'>
+  return contentIsVideo?(videoIsYt?
+  (<div className='tile is-child box box-width'>
       <YtPlayer src={videoData[videoId]} changeVideo={changeVideo}/>
     
-    </div>
+    </div>):(
+      <div>
+        <video width="100%" height="100%" controls autoPlay={true} onEnded={changeMedia}>
+          <source src={mediaData[mediaId]} type="video/mp4" />
+        </video>
+      </div>
+    )
+
   ):
     (
     <div class="tile is-child box box-width">

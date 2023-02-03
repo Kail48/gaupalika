@@ -11,17 +11,20 @@ export default function Redirect() {
         const [loading, setloading] = useState(true);
         const [hasError, setHasError] = useState(false);
         const {name,id}=useParams();
+        console.log(name,'/',id);
         let navigate = useNavigate();
     const fetchData = (name,id) => {
+
         axios
               .get('http://188.34.189.124/api/'+name+'/'+id)
+              
               .then((res) => {
               
                console.log(res.data);
                navigate('/homepage',{ state: res.data })
               })
               .catch((err) => {
-                console.log("api problrm")
+                console.log(err)
                   setError1(err);
                   setHasError(true);
                  
